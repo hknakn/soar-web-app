@@ -31,7 +31,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="fixed inset-y-0 left-0 z-50 hidden w-64 lg:flex bg-[#E6EFF5]">
+    <div className="fixed inset-y-0 left-0 z-50 hidden w-56 lg:flex bg-[#E6EFF5]">
       <div className="flex w-full flex-col border-r border-r-[#E6EFF5] bg-white">
         {/* Logo section */}
         <div className="flex h-20 shrink-0 items-center gap-x-3 px-6">
