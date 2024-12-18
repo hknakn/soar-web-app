@@ -1,5 +1,6 @@
 import { MyCards } from "./components/dashboard/MyCards";
 import { RecentTransactions } from "./components/dashboard/RecentTransactions";
+import { Statistics } from "./components/dashboard/Statistics";
 
 export default function Home() {
   return (
@@ -19,6 +20,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Statistics Section */}
+      <Statistics />
     </div>
   );
 }
