@@ -15,7 +15,7 @@ import {
 } from "../icons";
 import { usePathname } from "next/navigation";
 
-const navigation = [
+export const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon },
   { name: "Transactions", href: "/transactions", icon: BanknotesIcon },
   { name: "Accounts", href: "/accounts", icon: UserIcon },
