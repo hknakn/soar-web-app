@@ -335,3 +335,21 @@ export function UserPaymentIcon({ className = "w-6 h-6" }: IconProps) {
     </svg>
   );
 }
+
+export function CardTypeLogoDark({ className = "w-6 h-6" }: IconProps) {
+  return (
+    <svg width={44} height={30} fill="none" className={className}>
+      <circle cx={15} cy={15} r={15} fill="#fff" fillOpacity={0.5} />
+      <circle cx={29} cy={15} r={15} fill="#fff" fillOpacity={0.5} />
+    </svg>
+  );
+}
+
+export function CardTypeLogoLight({ className = "w-6 h-6" }: IconProps) {
+  return (
+    <svg width={44} height={30} fill="none" className={className}>
+      <circle cx={15} cy={15} r={15} fill="#9199AF" fillOpacity={0.5} />
+      <circle cx={29} cy={15} r={15} fill="#9199AF" fillOpacity={0.5} />
+    </svg>
+  );
+}

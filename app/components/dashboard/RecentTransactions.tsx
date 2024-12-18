@@ -42,14 +42,14 @@ const transactions: Transaction[] = [
 
 export function RecentTransactions() {
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
+    <div className="h-full flex flex-col">
+      <div className="flex items-center justify-between mb-6">
         <h2 className="text-[22px] leading-[26.63px] font-semibold text-[#232323]">
           Recent Transaction
         </h2>
       </div>
 
-      <div className="rounded-2xl bg-white p-6">
+      <div className="flex-1 rounded-2xl bg-white p-6">
         <div className="space-y-6">
           {transactions.map((transaction) => (
             <div

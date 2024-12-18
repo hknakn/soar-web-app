@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Lato } from "next/font/google";
 import "./globals.css";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 
 const inter = Inter({ subsets: ["latin"] });
+const lato = Lato({ 
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-lato',
+});
 
 export const metadata: Metadata = {
   title: "Soar Task",
@@ -16,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={lato.variable}>
       <body className={inter.className}>
         <DashboardLayout>{children}</DashboardLayout>
       </body>
