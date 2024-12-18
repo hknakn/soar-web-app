@@ -1,6 +1,7 @@
 import { MyCards } from "./components/dashboard/MyCards";
 import { RecentTransactions } from "./components/dashboard/RecentTransactions";
 import { Statistics } from "./components/dashboard/Statistics";
+import { TransferAndHistory } from "./components/dashboard/TransferAndHistory";
 
 export default function Home() {
   return (
@@ -23,6 +24,9 @@ export default function Home() {
 
       {/* Statistics Section */}
       <Statistics />
+      
+      {/* Transfer and History Section */}
+      <TransferAndHistory />
     </div>
   );
 }
