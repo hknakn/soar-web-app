@@ -31,8 +31,8 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="fixed inset-y-0 left-0 z-50 hidden w-64 lg:flex">
-      <div className="flex w-full flex-col border-r border-gray-200 bg-white">
+    <div className="fixed inset-y-0 left-0 z-50 hidden w-64 lg:flex bg-[#E6EFF5]">
+      <div className="flex w-full flex-col border-r border-r-[#E6EFF5] bg-white">
         {/* Logo section */}
         <div className="flex h-20 shrink-0 items-center gap-x-3 px-6">
           <LogoIcon className="h-8 w-8" />
@@ -42,7 +42,7 @@ export function Sidebar() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-1 flex-col">
+        <nav className="flex flex-1 flex-col mt-6">
           <ul role="list" className="flex flex-1 flex-col gap-y-4">
             {navigation.map((item) => {
               const isActive = pathname === item.href;

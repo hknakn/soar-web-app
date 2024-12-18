@@ -1,9 +1,9 @@
-import { SearchIcon, BellIcon, SettingsIcon } from "../icons";
+import { SearchIcon, BellIcon, SettingsOutlineIcon } from "../icons";
 import Image from "next/image";
 
 export function TopNav() {
   return (
-    <div className="sticky top-0 z-40 flex h-20 items-center justify-between gap-x-4 border-b border-gray-100 bg-white px-6">
+    <div className="sticky top-0 z-40 flex h-20 items-center justify-between gap-x-4 border-b border-b-[#E6EFF5] bg-[#FFFFFF] px-6">
       {/* Left side - Title */}
       <h1 className="text-2xl font-semibold text-[#343C6A]">Overview</h1>
 
@@ -12,36 +12,36 @@ export function TopNav() {
         {/* Search */}
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-            <SearchIcon className="h-5 w-5 text-[#B1B1B1]" />
+            <SearchIcon className="h-5 w-5 text-[#718EBF]" />
           </div>
           <input
             type="text"
             placeholder="Search for something"
-            className="h-11 w-[280px] rounded-full bg-[#F5F7F9] pl-11 pr-4 text-sm text-[#343C6A] placeholder-[#B1B1B1] focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
+            className="h-10 w-[255px] rounded-full bg-[#F5F7FA] pl-11 pr-4 text-[15px] text-[#343C6A] placeholder-[#8BA3CB] focus:outline-none"
           />
         </div>
 
         {/* Settings */}
         <button
           type="button"
-          className="rounded-full bg-[#F5F7F9] p-3"
+          className="rounded-full bg-[#F5F7FA] h-10 w-10 transition-colors hover:bg-[#E6EFF5] flex items-center justify-center"
         >
-          <SettingsIcon className="h-5 w-5 text-[#B1B1B1]" />
+          <SettingsOutlineIcon className="h-[25px] w-[25px] text-[#718EBF] transition-colors hover:text-[#396AFF]" />
         </button>
 
         {/* Notifications */}
         <button
           type="button"
-          className="rounded-full bg-[#F5F7F9] p-3"
+          className="rounded-full bg-[#F5F7F9] h-10 w-10 transition-colors hover:bg-[#E6EFF5] flex items-center justify-center"
         >
-          <BellIcon className="h-5 w-5 text-[#B1B1B1]" />
+          <BellIcon className="h-[25px] w-[25px] text-[#396AFF] transition-colors hover:text-[#718EBF]" />
         </button>
 
         {/* Profile */}
         <div className="flex items-center">
-          <div className="h-11 w-11 overflow-hidden rounded-full border-2 border-[#4F46E5]">
+          <div className="h-11 w-11 overflow-hidden rounded-full">
             <Image
-              src="/placeholder-avatar.svg"
+              src="/main-user.png"
               alt="User avatar"
               width={44}
               height={44}
@@ -52,4 +52,4 @@ export function TopNav() {
       </div>
     </div>
   );
-} 
+}
