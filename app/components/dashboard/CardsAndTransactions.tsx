@@ -1,15 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { CardTypeLogoDark, CardTypeLogoLight } from "../icons";
-import { CardDepositIcon, PaypalIcon, UserPaymentIcon } from "../icons";
-
-interface CardProps {
-  variant: "dark" | "light";
-  balance: number;
-  cardHolder: string;
-  cardNumber: string;
-  validThru: string;
-}
+import { fetchCardsAndTransactions, type CardProps, type Transaction } from "@/app/lib/mock/cardsAndTransactions";
 
 function CreditCard({
   variant,
@@ -108,34 +101,71 @@ function CreditCard({
   );
 }
 
-const transactions = [
-  {
-    id: 1,
-    title: "Deposit from my",
-    date: "28 January 2021",
-    amount: -850,
-    icon: CardDepositIcon,
-    iconBg: "bg-[#FFF6E9]",
-  },
-  {
-    id: 2,
-    title: "Deposit Paypal",
-    date: "25 January 2021",
-    amount: 2500,
-    icon: PaypalIcon,
-    iconBg: "bg-[#EDF0FF]",
-  },
-  {
-    id: 3,
-    title: "Jemi Wilson",
-    date: "21 January 2021",
-    amount: 5400,
-    icon: UserPaymentIcon,
-    iconBg: "bg-[#E7EDFF]",
-  },
-];
+function CardSkeleton() {
+  return (
+    <div className="h-full w-full rounded-[25px] p-6 bg-white border border-[#DFEAF2] animate-pulse">
+      <div className="space-y-3">
+        <div className="h-4 w-16 bg-gray-200 rounded" />
+        <div className="h-6 w-24 bg-gray-200 rounded" />
+      </div>
+      <div className="mt-4 flex justify-between">
+        <div className="space-y-2">
+          <div className="h-3 w-20 bg-gray-200 rounded" />
+          <div className="h-4 w-32 bg-gray-200 rounded" />
+        </div>
+        <div className="space-y-2">
+          <div className="h-3 w-16 bg-gray-200 rounded" />
+          <div className="h-4 w-16 bg-gray-200 rounded" />
+        </div>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="border-t border-[#DFEAF2]" />
+        <div className="h-20 flex items-center justify-between px-6">
+          <div className="h-6 w-48 bg-gray-200 rounded" />
+          <div className="h-8 w-12 bg-gray-200 rounded" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TransactionSkeleton() {
+  return (
+    <div className="flex items-center justify-between animate-pulse">
+      <div className="flex items-center gap-4">
+        <div className="w-[50px] h-[50px] rounded-full bg-gray-200" />
+        <div className="space-y-2">
+          <div className="h-4 w-24 bg-gray-200 rounded" />
+          <div className="h-3 w-32 bg-gray-200 rounded" />
+        </div>
+      </div>
+      <div className="h-4 w-20 bg-gray-200 rounded" />
+    </div>
+  );
+}
 
 export function CardsAndTransactions() {
+  const [cards, setCards] = useState<CardProps[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fetchCardsAndTransactions();
+        setCards(data.cards);
+        setTransactions(data.transactions);
+      } catch (error) {
+        console.error("Error loading data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
   return (
     <div className="grid grid-cols-12 gap-6">
       <div className="col-span-12">
@@ -170,49 +200,47 @@ export function CardsAndTransactions() {
               {/* Cards Container - Mobile Scrollable */}
               <div className="relative h-[200px] lg:h-[250px]">
                 <div className="absolute inset-0 flex overflow-x-auto hide-scrollbar">
+                  {/* Mobile View */}
                   <div className="inline-flex pl-8 pr-8 gap-5 lg:hidden">
-                    <div className="min-w-[300px] flex-shrink-0">
-                      <div className="h-[200px]">
-                        <CreditCard
-                          variant="dark"
-                          balance={5756}
-                          cardHolder="Eddy Cusuma"
-                          cardNumber="3778 **** **** 1234"
-                          validThru="12/22"
-                        />
-                      </div>
-                    </div>
-                    <div className="min-w-[300px] flex-shrink-0">
-                      <div className="h-[200px]">
-                        <CreditCard
-                          variant="light"
-                          balance={5756}
-                          cardHolder="Eddy Cusuma"
-                          cardNumber="3778 **** **** 1234"
-                          validThru="12/22"
-                        />
-                      </div>
-                    </div>
+                    {isLoading ? (
+                      <>
+                        <div className="min-w-[300px] flex-shrink-0 h-[200px]">
+                          <CardSkeleton />
+                        </div>
+                        <div className="min-w-[300px] flex-shrink-0 h-[200px]">
+                          <CardSkeleton />
+                        </div>
+                      </>
+                    ) : (
+                      cards.map((card, index) => (
+                        <div
+                          key={index}
+                          className="min-w-[300px] flex-shrink-0 h-[200px]"
+                        >
+                          <CreditCard {...card} />
+                        </div>
+                      ))
+                    )}
                   </div>
+
+                  {/* Desktop View */}
                   <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 w-full">
-                    <div className="h-[250px]">
-                      <CreditCard
-                        variant="dark"
-                        balance={5756}
-                        cardHolder="Eddy Cusuma"
-                        cardNumber="3778 **** **** 1234"
-                        validThru="12/22"
-                      />
-                    </div>
-                    <div className="h-[250px]">
-                      <CreditCard
-                        variant="light"
-                        balance={5756}
-                        cardHolder="Eddy Cusuma"
-                        cardNumber="3778 **** **** 1234"
-                        validThru="12/22"
-                      />
-                    </div>
+                    {isLoading ? (
+                      <>
+                        <div className="h-[250px]">
+                          <CardSkeleton />
+                        </div>
+                        <div className="h-[250px]">
+                          <CardSkeleton />
+                        </div>
+                      </>
+                    ) : (
+                      cards.map((card, index) => (
+                        <div key={index} className="h-[250px]">
+                          <CreditCard {...card} />
+                        </div>
+                      ))
+                    )}
                   </div>
                 </div>
               </div>
@@ -229,38 +257,44 @@ export function CardsAndTransactions() {
 
               <div className="lg:bg-white lg:rounded-[25px] lg:p-6 lg:h-[250px] px-8 lg:px-6">
                 <div className="flex flex-col gap-6">
-                  {transactions.map((transaction) => (
-                    <div
-                      key={transaction.id}
-                      className="flex items-center justify-between"
-                    >
-                      <div className="flex items-center gap-4">
+                  {isLoading
+                    ? Array(3)
+                        .fill(0)
+                        .map((_, index) => (
+                          <TransactionSkeleton key={index} />
+                        ))
+                    : transactions.map((transaction) => (
                         <div
-                          className={`w-[50px] h-[50px] rounded-full ${transaction.iconBg} flex items-center justify-center`}
+                          key={transaction.id}
+                          className="flex items-center justify-between"
                         >
-                          <transaction.icon />
-                        </div>
-                        <div>
-                          <p className="text-[15px] font-bold text-[#232323]">
-                            {transaction.title}
+                          <div className="flex items-center gap-4">
+                            <div
+                              className={`w-[50px] h-[50px] rounded-full ${transaction.iconBg} flex items-center justify-center`}
+                            >
+                              <transaction.icon />
+                            </div>
+                            <div>
+                              <p className="text-[15px] font-bold text-[#232323]">
+                                {transaction.title}
+                              </p>
+                              <p className="text-sm text-[#718EBF]">
+                                {transaction.date}
+                              </p>
+                            </div>
+                          </div>
+                          <p
+                            className={`text-base font-bold ${
+                              transaction.amount < 0
+                                ? "text-[#F3735E]"
+                                : "text-[#60C589]"
+                            }`}
+                          >
+                            {transaction.amount < 0 ? "-" : "+"}$
+                            {Math.abs(transaction.amount).toLocaleString()}
                           </p>
-                          <p className="text-sm text-[#718EBF]">
-                            {transaction.date}
-                          </p>
                         </div>
-                      </div>
-                      <p
-                        className={`text-base font-bold ${
-                          transaction.amount < 0
-                            ? "text-[#F3735E]"
-                            : "text-[#60C589]"
-                        }`}
-                      >
-                        {transaction.amount < 0 ? "-" : "+"}$
-                        {Math.abs(transaction.amount).toLocaleString()}
-                      </p>
-                    </div>
-                  ))}
+                      ))}
                 </div>
               </div>
             </div>
