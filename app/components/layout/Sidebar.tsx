@@ -14,6 +14,7 @@ import {
   GroupIcon,
 } from "../icons";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 export const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon },
@@ -49,7 +50,18 @@ export function Sidebar() {
               return (
                 <li key={item.name} className="relative">
                   {isActive && (
-                    <div className="absolute left-0 top-0 h-full w-[6px] bg-[#232323] rounded-r-full" />
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute left-0 top-0 h-full w-[6px] bg-[#232323] rounded-r-full"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30
+                      }}
+                    />
                   )}
                   <Link
                     href={item.href}

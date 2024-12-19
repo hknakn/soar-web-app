@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={lato.variable}>
-      <body className={inter.className}>
+      <body className={`${inter.className} overflow-x-hidden`}>
         <DashboardLayout>{children}</DashboardLayout>
       </body>
     </html>

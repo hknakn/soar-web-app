@@ -1,5 +1,8 @@
+"use client";
+
 import { Sidebar } from "./Sidebar";
 import { TopNav } from "./TopNav";
+import { PageTransition } from "./PageTransition";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,7 +10,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <div className="lg:pl-56">
         <TopNav />
-        {children}
+        <PageTransition>
+          <div className="p-4">
+            {children}
+          </div>
+        </PageTransition>
       </div>
     </div>
   );
