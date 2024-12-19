@@ -1,23 +1,30 @@
 "use client";
 
-import { SearchIcon, BellIcon, SettingsOutlineIcon, MenuIcon, LogoIcon } from "../icons";
+import {
+  SearchIcon,
+  BellIcon,
+  SettingsOutlineIcon,
+  MenuIcon,
+  LogoIcon,
+} from "../icons";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navigation } from "./Sidebar";
+import { useRouter } from "next/navigation";
 
 export function TopNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-
+  const router = useRouter();
   return (
     <>
       <div className="sticky top-0 z-40 flex flex-col bg-white">
         <div className="flex h-14 lg:h-20 items-center justify-between border-b border-b-[#E6EFF5] px-4 lg:px-6">
           {/* Left side - Menu button (mobile only) */}
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="lg:hidden"
             onClick={() => setIsMenuOpen(true)}
           >
@@ -25,7 +32,9 @@ export function TopNav() {
           </button>
 
           {/* Center - Title (mobile) / Left - Title (desktop) */}
-          <h1 className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 text-lg lg:text-2xl font-semibold text-[#343C6A]">Overview</h1>
+          <h1 className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 text-lg lg:text-2xl font-semibold text-[#343C6A]">
+            {pathname === "/settings" ? "Settings" : "Overview"}
+          </h1>
 
           {/* Right side - Search and Actions */}
           <div className="flex items-center gap-x-4">
@@ -59,7 +68,10 @@ export function TopNav() {
 
             {/* Profile */}
             <div className="flex items-center">
-              <div className="h-9 w-9 lg:h-11 lg:w-11 overflow-hidden rounded-full">
+              <button
+                className="h-9 w-9 lg:h-11 lg:w-11 overflow-hidden rounded-full"
+                onClick={() => router.push("/settings")}
+              >
                 <Image
                   src="/main-user.png"
                   alt="User avatar"
@@ -67,7 +79,7 @@ export function TopNav() {
                   height={44}
                   className="h-full w-full object-cover"
                 />
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -90,9 +102,7 @@ export function TopNav() {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden">
-          <div 
-            className="fixed inset-y-0 left-0 w-[280px] bg-white transform transition-transform duration-300 ease-in-out"
-          >
+          <div className="fixed inset-y-0 left-0 w-[280px] bg-white transform transition-transform duration-300 ease-in-out">
             {/* Menu Header */}
             <div className="flex items-center justify-between h-14 px-4 border-b border-b-[#E6EFF5]">
               <div className="flex items-center gap-x-3">
@@ -101,7 +111,7 @@ export function TopNav() {
                   Soar Task
                 </span>
               </div>
-              <button 
+              <button
                 onClick={() => setIsMenuOpen(false)}
                 className="p-2 hover:bg-[#F5F7FA] rounded-full"
               >
