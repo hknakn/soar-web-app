@@ -14,10 +14,28 @@ import { usePathname } from "next/navigation";
 import { navigation } from "./Sidebar";
 import { useRouter } from "next/navigation";
 
+const getPageTitle = (pathname: string) => {
+  // Remove trailing slash if exists
+  const path = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+  
+  // Special case for root path
+  if (path === '') return 'Overview';
+  
+  // Find matching navigation item
+  const navItem = navigation.find(item => item.href === pathname);
+  if (navItem) return navItem.name;
+  
+  // Fallback: Capitalize the last segment of the path
+  const segment = path.split('/').pop() || '';
+  return segment.charAt(0).toUpperCase() + segment.slice(1);
+};
+
 export function TopNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const pageTitle = getPageTitle(pathname);
+
   return (
     <>
       <div className="sticky top-0 z-40 flex flex-col bg-white">
@@ -33,7 +51,7 @@ export function TopNav() {
 
           {/* Center - Title (mobile) / Left - Title (desktop) */}
           <h1 className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 text-lg lg:text-2xl font-semibold text-[#343C6A]">
-            {pathname === "/settings" ? "Settings" : "Overview"}
+            {pageTitle}
           </h1>
 
           {/* Right side - Search and Actions */}
