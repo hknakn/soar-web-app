@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +11,6 @@ import {
   Legend,
   ArcElement,
 } from "chart.js";
-import { Pie } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -31,7 +30,10 @@ const weeklyActivityData = {
       data: [450, 320, 300, 450, 150, 380, 380],
       backgroundColor: "#232323",
       borderRadius: 20,
-      barThickness: 25,
+      barThickness: ({ chart }) => {
+        // Return different thickness based on screen width
+        return chart.width < 500 ? 15 : 25;
+      },
       borderSkipped: false,
       borderColor: "transparent",
       borderWidth: 5,
@@ -41,7 +43,10 @@ const weeklyActivityData = {
       data: [240, 130, 250, 350, 240, 240, 320],
       backgroundColor: "#3B82F6",
       borderRadius: 20,
-      barThickness: 25,
+      barThickness: ({ chart }) => {
+        // Return different thickness based on screen width
+        return chart.width < 500 ? 15 : 25;
+      },
       borderSkipped: false,
       borderColor: "transparent",
       borderWidth: 5,
@@ -56,13 +61,14 @@ const weeklyActivityOptions = {
       position: "top" as const,
       align: "end" as const,
       labels: {
-        boxWidth: 15,
-        boxHeight: 15,
+        boxWidth: ({ chart }) => chart.width < 500 ? 8 : 15,
+        boxHeight: ({ chart }) => chart.width < 500 ? 8 : 15,
         usePointStyle: true,
         pointStyle: "circle",
         font: {
-          size: 15,
+          size: ({ chart }) => chart.width < 500 ? 12 : 15,
         },
+        padding: ({ chart }) => chart.width < 500 ? 10 : 15,
       },
     },
   },
@@ -121,7 +127,7 @@ const expenseOptions = {
 // Custom plugin to draw text inside pie segments
 const textCenter = {
   id: 'textCenter',
-  afterDraw(chart: any) {
+  afterDraw(chart: ChartJS) {
     const { ctx, data, chartArea } = chart;
     const centerX = (chartArea.left + chartArea.right) / 2;
     const centerY = (chartArea.top + chartArea.bottom) / 2;
@@ -162,30 +168,67 @@ const textCenter = {
   }
 };
 
+function WeeklyActivityChart() {
+  return (
+    <div className="h-[200px] lg:h-[300px] w-full">
+      <Bar options={weeklyActivityOptions} data={weeklyActivityData} />
+    </div>
+  );
+}
+
+function ExpenseStatisticsChart() {
+  return (
+    <div className="h-[250px] lg:h-[300px] w-full flex items-center justify-center">
+      <Pie options={expenseOptions} data={expenseData} plugins={[textCenter]} />
+    </div>
+  );
+}
+
 export function Statistics() {
   return (
-    <div className="mt-6">
-      <div className="grid grid-cols-12 gap-6">
-        {/* Weekly Activity */}
-        <div className="col-span-8 flex flex-col">
-          <h2 className="text-[22px] font-semibold text-[#232323] mb-4">
-            Weekly Activity
-          </h2>
-          <div className="bg-white rounded-[25px] p-6 flex-1">
-            <div className="h-full">
-              <Bar options={weeklyActivityOptions} data={weeklyActivityData} />
+    <div className="grid grid-cols-12 gap-6">
+      <div className="col-span-12">
+        <div className="flex flex-col space-y-4 lg:space-y-6">
+          {/* Desktop Titles Row - Hidden on Mobile */}
+          <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6">
+            <div className="lg:col-span-8">
+              <h2 className="text-[22px] font-bold text-[#232323]">
+                Weekly Activity
+              </h2>
+            </div>
+            <div className="lg:col-span-4">
+              <h2 className="text-[22px] font-bold text-[#232323]">
+                Expense Statistics
+              </h2>
             </div>
           </div>
-        </div>
 
-        {/* Expense Statistics */}
-        <div className="col-span-4 flex flex-col">
-          <h2 className="text-[22px] font-semibold text-[#232323] mb-4">
-            Expense Statistics
-          </h2>
-          <div className="bg-white rounded-[25px] p-6 flex-1">
-            <div className="h-full flex items-center justify-center">
-              <Pie options={expenseOptions} data={expenseData} plugins={[textCenter]} />
+          {/* Charts Row */}
+          <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6">
+            {/* Weekly Activity Section */}
+            <div className="col-span-12 lg:col-span-8">
+              {/* Mobile Title */}
+              <div className="lg:hidden mb-4">
+                <h2 className="text-[22px] font-bold text-[#232323]">
+                  Weekly Activity
+                </h2>
+              </div>
+              <div className="lg:bg-white lg:rounded-[25px] lg:p-6 -mx-4 px-4 lg:mx-0">
+                <WeeklyActivityChart />
+              </div>
+            </div>
+
+            {/* Expense Statistics Section */}
+            <div className="col-span-12 lg:col-span-4 lg:mt-0">
+              {/* Mobile Title */}
+              <div className="lg:hidden mb-4">
+                <h2 className="text-[22px] font-bold text-[#232323]">
+                  Expense Statistics
+                </h2>
+              </div>
+              <div className="lg:bg-white lg:rounded-[25px] lg:p-6 -mx-4 px-4 lg:mx-0">
+                <ExpenseStatisticsChart />
+              </div>
             </div>
           </div>
         </div>
