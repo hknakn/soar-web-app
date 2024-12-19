@@ -9,6 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { motion } from "framer-motion";
 
 type Tab = "edit" | "preferences" | "security";
 
@@ -51,7 +52,7 @@ export default function Settings() {
     register,
     handleSubmit,
     control,
-    formState: { isDirty },
+    formState: { errors, isDirty },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -123,8 +124,14 @@ export default function Settings() {
                   <input
                     {...register("name")}
                     type="text"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.name ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.name && (
+                    <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -134,8 +141,14 @@ export default function Settings() {
                   <input
                     {...register("username")}
                     type="text"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.username ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.username && (
+                    <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -145,8 +158,14 @@ export default function Settings() {
                   <input
                     {...register("email")}
                     type="email"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.email ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -156,8 +175,14 @@ export default function Settings() {
                   <input
                     {...register("password")}
                     type="password"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.password ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.password && (
+                    <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2 w-full">
@@ -205,8 +230,14 @@ export default function Settings() {
                   <input
                     {...register("presentAddress")}
                     type="text"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.presentAddress ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.presentAddress && (
+                    <p className="text-red-500 text-sm mt-1">{errors.presentAddress.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -216,8 +247,14 @@ export default function Settings() {
                   <input
                     {...register("permanentAddress")}
                     type="text"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.permanentAddress ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.permanentAddress && (
+                    <p className="text-red-500 text-sm mt-1">{errors.permanentAddress.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -227,8 +264,14 @@ export default function Settings() {
                   <input
                     {...register("city")}
                     type="text"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.city ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.city && (
+                    <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -238,8 +281,14 @@ export default function Settings() {
                   <input
                     {...register("postalCode")}
                     type="text"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.postalCode ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.postalCode && (
+                    <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -249,8 +298,14 @@ export default function Settings() {
                   <input
                     {...register("country")}
                     type="text"
-                    className="w-full h-[50px] bg-white border border-[#DFEAF2] rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]"
+                    className={cn(
+                      "w-full h-[50px] bg-white border rounded-lg px-4 text-[15px] text-[#718EBF] focus:outline-none focus:border-[#232323]",
+                      errors.country ? "border-red-500" : "border-[#DFEAF2]"
+                    )}
                   />
+                  {errors.country && (
+                    <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -294,45 +349,46 @@ export default function Settings() {
         {/* Profile Form */}
         <div className="bg-white rounded-[25px] p-4 lg:p-8">
           {/* Tabs */}
-          <div className="flex gap-4 lg:gap-8 border-b border-[#F1F5F9] mb-8 lg:mb-12 overflow-x-auto">
+          <div className="flex border-b border-[#F1F5F9] mb-8 lg:mb-12 overflow-x-auto relative">
             <button
               onClick={() => setActiveTab("edit")}
               className={cn(
-                "pb-4 text-[15px] font-medium relative whitespace-nowrap",
-                activeTab === "edit" ? "text-[#232323]" : "text-[#718EBF]"
+                "pb-4 text-[15px] font-medium relative whitespace-nowrap transition-colors w-[120px]",
+                activeTab === "edit" ? "text-[#232323]" : "text-[#718EBF] hover:text-[#232323]/70"
               )}
             >
               Edit Profile
-              {activeTab === "edit" && (
-                <div className="w-full h-1 bg-[#232323] rounded-t-full absolute bottom-0 left-0" />
-              )}
             </button>
             <button
               onClick={() => setActiveTab("preferences")}
               className={cn(
-                "pb-4 text-[15px] font-medium relative whitespace-nowrap",
-                activeTab === "preferences"
-                  ? "text-[#232323]"
-                  : "text-[#718EBF]"
+                "pb-4 text-[15px] font-medium relative whitespace-nowrap transition-colors w-[120px]",
+                activeTab === "preferences" ? "text-[#232323]" : "text-[#718EBF] hover:text-[#232323]/70"
               )}
             >
               Preferences
-              {activeTab === "preferences" && (
-                <div className="w-full h-1 bg-[#232323] rounded-t-full absolute bottom-0 left-0" />
-              )}
             </button>
             <button
               onClick={() => setActiveTab("security")}
               className={cn(
-                "pb-4 text-[15px] font-medium relative whitespace-nowrap",
-                activeTab === "security" ? "text-[#232323]" : "text-[#718EBF]"
+                "pb-4 text-[15px] font-medium relative whitespace-nowrap transition-colors w-[120px]",
+                activeTab === "security" ? "text-[#232323]" : "text-[#718EBF] hover:text-[#232323]/70"
               )}
             >
               Security
-              {activeTab === "security" && (
-                <div className="w-full h-1 bg-[#232323] rounded-t-full absolute bottom-0 left-0" />
-              )}
             </button>
+            <motion.div
+              className="absolute bottom-0 h-1 bg-[#232323] rounded-t-full"
+              animate={{
+                width: "100px",
+                x: activeTab === "edit" ? 10 : activeTab === "preferences" ? 130 : 250
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 500,
+                damping: 30
+              }}
+            />
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
