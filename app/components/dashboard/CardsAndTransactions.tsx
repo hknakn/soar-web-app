@@ -144,7 +144,7 @@ export function CardsAndTransactions() {
           <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6 px-8 lg:px-0">
             <div className="col-span-8 flex items-center justify-between">
               <h2 className="text-[22px] font-bold text-[#232323]">My Cards</h2>
-              <button className="text-base font-bold text-[#232323] hover:text-[#4D5B7C] transition-colors">
+              <button className="text-base font-bold text-[#232323] hover:text-[#4D5B7C] transition-colors hover:underline">
                 See All
               </button>
             </div>

@@ -54,6 +54,7 @@ export function TopNav() {
             <button
               type="button"
               className="rounded-full bg-[#F5F7FA] h-10 w-10 transition-colors hover:bg-[#E6EFF5] items-center justify-center hidden lg:flex"
+              onClick={() => router.push("/settings")}
             >
               <SettingsOutlineIcon className="h-[25px] w-[25px] text-[#718EBF] transition-colors hover:text-[#396AFF]" />
             </button>

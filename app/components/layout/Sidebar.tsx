@@ -24,7 +24,7 @@ export const navigation = [
   { name: "Loans", href: "/loans", icon: BuildingIcon },
   { name: "Services", href: "/services", icon: WrenchIcon },
   { name: "My Privileges", href: "/privileges", icon: GroupIcon },
-  { name: "Setting", href: "/settings", icon: SettingsIcon },
+  { name: "Settings", href: "/settings", icon: SettingsIcon },
 ];
 
 export function Sidebar() {
