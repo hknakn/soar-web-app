@@ -16,9 +16,7 @@
 - 🎨 Modern UI with smooth transitions and animations
 - 📊 Interactive charts and data visualizations
 - 🔄 Mock data integration with simulated API delays
-- 🎭 Dark and light mode credit cards
 - 👤 Profile management with image upload
-- 🔍 Search functionality
 - 📱 Mobile-friendly navigation
 
 ## 🛠 Tech Stack
