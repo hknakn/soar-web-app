@@ -7,6 +7,13 @@ import { FormField } from "../FormField";
 import { ProfileImage } from "../ProfileImage";
 import { FormValues } from "../types";
 
+interface ProfileData {
+  // Add specific types based on your data structure
+  name: string;
+  email: string;
+  // ... other profile fields
+}
+
 interface EditProfileTabProps {
   register: UseFormRegister<FormValues>;
   control: Control<FormValues>;

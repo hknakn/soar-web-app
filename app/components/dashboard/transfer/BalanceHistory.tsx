@@ -23,8 +23,14 @@ ChartJS.register(
   Filler
 );
 
+interface BalanceData {
+  // Add specific types based on your data structure
+  date: Date;
+  amount: number;
+}
+
 interface BalanceHistoryProps {
-  data: any;
+  data: BalanceData[];
 }
 
 export function BalanceHistory({ data }: BalanceHistoryProps) {

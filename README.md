@@ -1,8 +1,16 @@
-# Soar Web App - Financial Dashboard
+<div align="center">
+  <img src="public/soar-logo.png" alt="Soar Logo" width="80" height="80" />
 
-A modern financial dashboard built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion. The application features a responsive design, smooth transitions, and interactive data visualizations using Chart.js.
+  # Soar Web App - Financial Dashboard
 
-## Features
+  A modern financial dashboard built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion. The application features a responsive design, smooth transitions, and interactive data visualizations using Chart.js.
+
+  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhknakn%2Fsoar-web-app)
+</div>
+
+---
+
+## ✨ Features
 
 - 📱 Responsive design optimized for both mobile and desktop
 - 🎨 Modern UI with smooth transitions and animations
@@ -13,7 +21,7 @@ A modern financial dashboard built with Next.js 14, TypeScript, Tailwind CSS, an
 - 🔍 Search functionality
 - 📱 Mobile-friendly navigation
 
-## Tech Stack
+## 🛠 Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
@@ -24,12 +32,12 @@ A modern financial dashboard built with Next.js 14, TypeScript, Tailwind CSS, an
 - **Date Picker**: React Datepicker
 - **Icons**: Custom SVG icons
 
-## Prerequisites
+## 📋 Prerequisites
 
 - Node.js 18.17 or later
 - pnpm (recommended) or npm
 
-## Getting Started
+## 🚀 Getting Started
 
 1. Clone the repository:
 
@@ -52,7 +60,7 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 app/
@@ -67,7 +75,7 @@ app/
 └── globals.css        # Global styles
 ```
 
-## Key Components
+## 🧩 Key Components
 
 - **DashboardLayout**: Main layout wrapper with sidebar and top navigation
 - **PageTransition**: Handles smooth transitions between pages
@@ -76,25 +84,25 @@ app/
 - **TransferAndHistory**: Quick transfer functionality and balance history
 - **Settings**: Profile management with tabs for different settings
 
-## Design Decisions & Assumptions
+## 🤔 Design Decisions & Assumptions
 
-1. **API Integration**:
+### 1. API Integration
 
-   - All data is currently mocked with simulated API delays
-   - API endpoints can be easily integrated by replacing mock functions
+- All data is currently mocked with simulated API delays
+- API endpoints can be easily integrated by replacing mock functions
 
-2. **State Management**:
+### 2. State Management
 
-   - Local React state is used as the application doesn't require complex state management
-   - Context API is used for layout-related state
+- Local React state is used as the application doesn't require complex state management
+- Context API is used for layout-related state
 
-3. **Performance**:
+### 3. Performance
 
-   - Images are optimized using Next.js Image component
-   - Charts are loaded lazily with loading skeletons
-   - Animations are hardware-accelerated
+- Images are optimized using Next.js Image component
+- Charts are loaded lazily with loading skeletons
+- Animations are hardware-accelerated
 
-4. **Responsive Design**:
-   - Mobile-first approach
-   - Different layouts for mobile and desktop views
-   - Scrollable content on mobile with hidden scrollbars
+### 4. Responsive Design
+- Mobile-first approach
+- Different layouts for mobile and desktop views
+- Scrollable content on mobile with hidden scrollbars

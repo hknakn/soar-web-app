@@ -32,8 +32,16 @@ ChartJS.register(
   Filler
 );
 
+interface StatisticsData {
+  // Add specific types based on your data structure
+  value: number;
+  label: string;
+  percentage: number;
+  trend: "up" | "down";
+}
+
 export function Statistics() {
-  const [statisticsData, setStatisticsData] = useState<any>(null);
+  const [statisticsData, setStatisticsData] = useState<StatisticsData[]>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -43,7 +51,7 @@ export function Statistics() {
         const data = await fetchStatisticsData();
         setStatisticsData(data);
       } catch (error) {
-        console.error('Error loading statistics:', error);
+        console.error("Error loading statistics:", error);
       } finally {
         setIsLoading(false);
       }

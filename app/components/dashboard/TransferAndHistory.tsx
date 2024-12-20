@@ -6,13 +6,21 @@ import { QuickTransfer } from "./transfer/QuickTransfer";
 import { BalanceHistory } from "./transfer/BalanceHistory";
 import { QuickTransferSkeleton, BalanceHistorySkeleton } from "./transfer/Skeletons";
 
+interface TransferData {
+  // Add specific types based on your data structure
+  id: string;
+  amount: number;
+  date: Date;
+  type: string;
+}
+
 export function TransferAndHistory() {
   const [startIndex, setStartIndex] = useState(0);
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<{
     quickTransferUsers: QuickTransferUser[];
-    balanceHistory: any;
+    balanceHistory: TransferData[];
   } | null>(null);
 
   useEffect(() => {

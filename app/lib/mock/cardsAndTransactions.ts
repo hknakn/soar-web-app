@@ -9,12 +9,11 @@ export interface CardProps {
 }
 
 export interface Transaction {
-  id: number;
-  title: string;
-  date: string;
+  id: string;
   amount: number;
-  icon: any;
-  iconBg: string;
+  date: Date;
+  type: string;
+  // ... other transaction fields
 }
 
 export const mockCards: CardProps[] = [
@@ -36,25 +35,25 @@ export const mockCards: CardProps[] = [
 
 export const mockTransactions: Transaction[] = [
   {
-    id: 1,
+    id: "1",
     title: "Deposit from my",
-    date: "28 January 2021",
+    date: new Date("2021-01-28"),
     amount: -850,
     icon: CardDepositIcon,
     iconBg: "bg-[#FFF6E9]",
   },
   {
-    id: 2,
+    id: "2",
     title: "Deposit Paypal",
-    date: "25 January 2021",
+    date: new Date("2021-01-25"),
     amount: 2500,
     icon: PaypalIcon,
     iconBg: "bg-[#EDF0FF]",
   },
   {
-    id: 3,
+    id: "3",
     title: "Jemi Wilson",
-    date: "21 January 2021",
+    date: new Date("2021-01-21"),
     amount: 5400,
     icon: UserPaymentIcon,
     iconBg: "bg-[#E7EDFF]",
