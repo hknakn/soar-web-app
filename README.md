@@ -60,6 +60,25 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## 📁 Deployment
+
+### Deploying to Vercel
+
+1. Fork this repository
+2. Create a new project on Vercel
+3. Connect your forked repository
+4. Configure the build settings:
+   - Build Command: `pnpm build`
+   - Output Directory: `.next`
+   - Install Command: `pnpm install`
+
+### Important Notes for Deployment
+
+- The project uses pnpm as the package manager
+- A `.npmrc` file is included for proper dependency hoisting
+- TypeScript and ESLint checks are disabled during build for smoother deployment
+- The project uses Next.js standalone output mode
+
 ## 📁 Project Structure
 
 ```
