@@ -85,7 +85,7 @@ export const balanceHistoryOptions = {
       displayColors: false,
       callbacks: {
         title: () => '',
-        label: (context: any) => `$${context.parsed.y}`,
+        label: (context: { parsed: { y: number } }) => `$${context.parsed.y}`,
       },
       intersect: false,
       mode: 'index'
