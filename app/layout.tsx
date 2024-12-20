@@ -15,18 +15,9 @@ export const metadata: Metadata = {
   title: "Soar Task",
   description: "Financial Dashboard",
   icons: {
-    icon: [
-      {
-        url: "/soar-logo.png",
-        type: "image/png",
-      },
-    ],
-    apple: [
-      {
-        url: "/soar-logo.png",
-        type: "image/png",
-      },
-    ],
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/soar-logo.png",
   },
 };
 

@@ -28,8 +28,10 @@ interface BalanceHistoryProps {
   data: ChartData<"line">;
 }
 
-export function BalanceHistory({ data }: BalanceHistoryProps) {
+function BalanceHistory({ data }: BalanceHistoryProps) {
   return (
     <Line options={balanceHistoryOptions} data={data} />
   );
 }
+
+export default BalanceHistory;

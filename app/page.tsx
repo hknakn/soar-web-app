@@ -1,6 +1,8 @@
+"use client";
+
 import { CardsAndTransactions } from "./components/dashboard/CardsAndTransactions";
 import { Statistics } from "./components/dashboard/Statistics";
-import { TransferAndHistory } from "./components/dashboard/TransferAndHistory";
+import TransferAndHistory from "./components/dashboard/TransferAndHistory";
 
 export default function Home() {
   return (

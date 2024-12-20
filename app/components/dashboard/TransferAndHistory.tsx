@@ -3,24 +3,16 @@
 import { useEffect, useState } from "react";
 import { fetchTransferAndHistoryData, type QuickTransferUser } from "@/app/lib/mock/transferAndHistory";
 import { QuickTransfer } from "./transfer/QuickTransfer";
-import { BalanceHistory } from "./transfer/BalanceHistory";
+import BalanceHistory from "./transfer/BalanceHistory";
 import { QuickTransferSkeleton, BalanceHistorySkeleton } from "./transfer/Skeletons";
 
-interface TransferData {
-  // Add specific types based on your data structure
-  id: string;
-  amount: number;
-  date: Date;
-  type: string;
-}
-
-export function TransferAndHistory() {
+function TransferAndHistory() {
   const [startIndex, setStartIndex] = useState(0);
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<{
     quickTransferUsers: QuickTransferUser[];
-    balanceHistory: TransferData[];
+    balanceHistory: any;
   } | null>(null);
 
   useEffect(() => {
@@ -121,3 +113,5 @@ export function TransferAndHistory() {
     </div>
   );
 }
+
+export default TransferAndHistory;

@@ -6,12 +6,25 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  output: 'standalone',
   eslint: {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    esmExternals: 'loose',
+    esmExternals: true,
+  },
+  output: 'standalone',
+  async headers() {
+    return [
+      {
+        source: '/favicon.ico',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
   },
 };
 
