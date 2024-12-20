@@ -5,7 +5,7 @@
 
   A modern financial dashboard built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion. The application features a responsive design, smooth transitions, and interactive data visualizations using Chart.js.
 
-  [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhknakn%2Fsoar-web-app)
+  [Live Demo](https://soar-web-app.vercel.app)
 </div>
 
 ---
