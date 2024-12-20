@@ -74,12 +74,12 @@ export const balanceHistoryOptions = {
       titleFont: {
         size: 14,
         family: 'Inter',
-        weight: '500'
+        weight: 500,
       },
       bodyFont: {
         size: 14,
         family: 'Inter',
-        weight: '500'
+        weight: 500,
       },
       padding: 12,
       displayColors: false,
@@ -88,11 +88,11 @@ export const balanceHistoryOptions = {
         label: (context: { parsed: { y: number } }) => `$${context.parsed.y}`,
       },
       intersect: false,
-      mode: 'index'
+      mode: 'index' as const,
     },
   },
   hover: {
-    mode: 'index',
+    mode: 'index' as const,
     intersect: false
   },
   scales: {

@@ -10,6 +10,7 @@ import {
   Title,
   Tooltip,
   Filler,
+  ChartData,
 } from "chart.js";
 import { balanceHistoryOptions } from "@/app/lib/mock/transferAndHistory";
 
@@ -23,18 +24,12 @@ ChartJS.register(
   Filler
 );
 
-interface BalanceData {
-  // Add specific types based on your data structure
-  date: Date;
-  amount: number;
-}
-
 interface BalanceHistoryProps {
-  data: BalanceData[];
+  data: ChartData<"line">;
 }
 
 export function BalanceHistory({ data }: BalanceHistoryProps) {
   return (
     <Line options={balanceHistoryOptions} data={data} />
   );
-} 
+}
