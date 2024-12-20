@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Soar Web App - Financial Dashboard
+
+A modern financial dashboard built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion. The application features a responsive design, smooth transitions, and interactive data visualizations using Chart.js.
+
+## Features
+
+- 📱 Responsive design optimized for both mobile and desktop
+- 🎨 Modern UI with smooth transitions and animations
+- 📊 Interactive charts and data visualizations
+- 🔄 Mock data integration with simulated API delays
+- 🎭 Dark and light mode credit cards
+- 👤 Profile management with image upload
+- 🔍 Search functionality
+- 📱 Mobile-friendly navigation
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **Charts**: Chart.js with react-chartjs-2
+- **Forms**: React Hook Form with Zod validation
+- **Date Picker**: React Datepicker
+- **Icons**: Custom SVG icons
+
+## Prerequisites
+
+- Node.js 18.17 or later
+- pnpm (recommended) or npm
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/hknakn/soar-web-app
+cd soar-web-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Run the development server:
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+├── components/         # Reusable UI components
+│   ├── dashboard/     # Dashboard-specific components
+│   ├── layout/        # Layout components
+│   ├── settings/      # Settings-related components
+│   └── icons/         # SVG icons
+├── lib/
+│   └── mock/          # Mock data and API simulation
+├── (routes)/          # App router pages
+└── globals.css        # Global styles
+```
 
-## Deploy on Vercel
+## Key Components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **DashboardLayout**: Main layout wrapper with sidebar and top navigation
+- **PageTransition**: Handles smooth transitions between pages
+- **CardsAndTransactions**: Displays credit cards and recent transactions
+- **Statistics**: Shows weekly activity and expense statistics
+- **TransferAndHistory**: Quick transfer functionality and balance history
+- **Settings**: Profile management with tabs for different settings
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design Decisions & Assumptions
+
+1. **API Integration**:
+
+   - All data is currently mocked with simulated API delays
+   - API endpoints can be easily integrated by replacing mock functions
+
+2. **State Management**:
+
+   - Local React state is used as the application doesn't require complex state management
+   - Context API is used for layout-related state
+
+3. **Performance**:
+
+   - Images are optimized using Next.js Image component
+   - Charts are loaded lazily with loading skeletons
+   - Animations are hardware-accelerated
+
+4. **Responsive Design**:
+   - Mobile-first approach
+   - Different layouts for mobile and desktop views
+   - Scrollable content on mobile with hidden scrollbars
